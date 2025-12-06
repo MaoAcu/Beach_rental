@@ -1,11 +1,2 @@
 flask==3.1.2
-flask_sqlalchemy
-psycopg2-binary
 gunicorn
-sqlalchemy
-pyodbc
-bcrypt
-sendgrid
-requests
-twilio
-pandas
