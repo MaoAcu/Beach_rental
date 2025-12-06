@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precios - Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/precios.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏕️ Admin</h2>
+                <button class="toggle-sidebar">≡</button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item ">📊 Dashboard</a>
+                <a href="{{ url_for('routes.reserve') }}" class="nav-item">📅 Reservas</a>
+                <a href="{{ url_for('routes.cabanas') }}" class="nav-item">🏠 Cabañas</a>
+                <a href="{{ url_for('routes.disponibilidad') }}" class="nav-item">📆 Disponibilidad</a>
+                <a href="{{ url_for('routes.price') }}" class="nav-item  active">💰 Precios</a>
+                <a href="{{ url_for('routes.image') }}" class="nav-item">🖼️ Imágenes</a>
+                <a href="{{ url_for('routes.message') }}" class="nav-item">💬 Mensajes</a>
+                <a href="{{ url_for('routes.ver_estadisticas') }}" class="nav-item">📈 Estadísticas</a>
+                <a href="{{ url_for('routes.config') }}" class="nav-item">⚙️ Configuración</a>
+                <a href="{{ url_for('routes.profile') }}" class="nav-item">👤 Perfil</a>
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item logout">🚪 Salir</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar...">
+                </div>
+                <div class="top-bar-right">
+                    <span class="user-name">Admin</span>
+                    <img src="/placeholder-user.jpg" alt="Usuario" class="avatar">
+                </div>
+            </header>
+
+            <section class="precios-content">
+                <h1>Gestión de Precios</h1>
+                
+                <div class="pricing-section">
+                    <h2>Precios Base</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Cabaña</th>
+                                <th>Precio/Noche</th>
+                                <th>Min. Noches</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cabaña Pino</td>
+                                <td>$225</td>
+                                <td>1</td>
+                                <td><button class="btn-small btn-info">Editar</button></td>
+                            </tr>
+                            <tr>
+                                <td>Cabaña Roble</td>
+                                <td>$275</td>
+                                <td>2</td>
+                                <td><button class="btn-small btn-info">Editar</button></td>
+                            </tr>
+                            <tr>
+                                <td>Cabaña Cedro</td>
+                                <td>$350</td>
+                                <td>2</td>
+                                <td><button class="btn-small btn-info">Editar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pricing-section">
+                    <h2>Temporadas y Precios Especiales</h2>
+                    <div class="season-grid">
+                        <div class="season-card">
+                            <h4>Alta Temporada</h4>
+                            <p>Diciembre - Febrero</p>
+                            <input type="number" placeholder="% Aumento" value="20">
+                            <button class="btn btn-primary">Guardar</button>
+                        </div>
+                        <div class="season-card">
+                            <h4>Temporada Media</h4>
+                            <p>Marzo - Mayo, Sept - Nov</p>
+                            <input type="number" placeholder="% Ajuste" value="10">
+                            <button class="btn btn-primary">Guardar</button>
+                        </div>
+                        <div class="season-card">
+                            <h4>Baja Temporada</h4>
+                            <p>Junio - Agosto</p>
+                            <input type="number" placeholder="% Descuento" value="-15">
+                            <button class="btn btn-primary">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h2>Descuentos por Duración</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Noches</th>
+                                <th>Descuento</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>7+ noches</td>
+                                <td>5%</td>
+                                <td><button class="btn-small btn-info">Editar</button></td>
+                            </tr>
+                            <tr>
+                                <td>14+ noches</td>
+                                <td>10%</td>
+                                <td><button class="btn-small btn-info">Editar</button></td>
+                            </tr>
+                            <tr>
+                                <td>30+ noches</td>
+                                <td>15%</td>
+                                <td><button class="btn-small btn-info">Editar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+ 
+     <script src="{{ url_for('static', filename='js/precios.js') }}"></script>
+</body>
+</html>

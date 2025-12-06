@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Admin Cabañas</title> 
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reservas.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏕️ Admin</h2>
+                <button class="toggle-sidebar">≡</button>
+            </div>
+             <nav class="sidebar-nav">
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item ">📊 Dashboard</a>
+                <a href="{{ url_for('routes.reserve') }}" class="nav-item active">📅 Reservas</a>
+                <a href="{{ url_for('routes.cabanas') }}" class="nav-item">🏠 Cabañas</a>
+                <a href="{{ url_for('routes.disponibilidad') }}" class="nav-item">📆 Disponibilidad</a>
+                <a href="{{ url_for('routes.price') }}" class="nav-item">💰 Precios</a>
+                <a href="{{ url_for('routes.image') }}" class="nav-item">🖼️ Imágenes</a>
+                <a href="{{ url_for('routes.message') }}" class="nav-item">💬 Mensajes</a>
+                <a href="{{ url_for('routes.ver_estadisticas') }}" class="nav-item">📈 Estadísticas</a>
+                <a href="{{ url_for('routes.config') }}" class="nav-item">⚙️ Configuración</a>
+                <a href="{{ url_for('routes.profile') }}" class="nav-item">👤 Perfil</a>
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item logout">🚪 Salir</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Buscar reserva...">
+                </div>
+                <div class="top-bar-right">
+                    <span class="user-name">Admin</span>
+                    <img src="/placeholder-user.jpg" alt="Usuario" class="avatar">
+                </div>
+            </header>
+
+            <section class="reservas-content">
+                <div class="section-header">
+                    <h1>Gestión de Reservas</h1>
+                    <div class="filters">
+                        <select id="filterStatus">
+                            <option value="">Todos los Estados</option>
+                            <option value="confirmada">Confirmada</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="cancelada">Cancelada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Huésped</th>
+                            <th>Email</th>
+                            <th>Cabaña</th>
+                            <th>Check-in</th>
+                            <th>Check-out</th>
+                            <th>Noches</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTable">
+                        <tr>
+                            <td>#001</td>
+                            <td>Juan García</td>
+                            <td>juan@email.com</td>
+                            <td>Cabaña Pino</td>
+                            <td>15/12/2024</td>
+                            <td>17/12/2024</td>
+                            <td>2</td>
+                            <td>$450</td>
+                            <td><span class="badge badge-success">Confirmada</span></td>
+                            <td>
+                                <button class="btn-small btn-info" onclick="viewDetails(1)">Ver</button>
+                                <button class="btn-small btn-danger">Cancelar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#002</td>
+                            <td>María López</td>
+                            <td>maria@email.com</td>
+                            <td>Cabaña Roble</td>
+                            <td>18/12/2024</td>
+                            <td>20/12/2024</td>
+                            <td>2</td>
+                            <td>$500</td>
+                            <td><span class="badge badge-warning">Pendiente</span></td>
+                            <td>
+                                <button class="btn-small btn-info" onclick="viewDetails(2)">Ver</button>
+                                <button class="btn-small btn-danger">Cancelar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#003</td>
+                            <td>Carlos Martín</td>
+                            <td>carlos@email.com</td>
+                            <td>Cabaña Cedro</td>
+                            <td>21/12/2024</td>
+                            <td>23/12/2024</td>
+                            <td>2</td>
+                            <td>$480</td>
+                            <td><span class="badge badge-success">Confirmada</span></td>
+                            <td>
+                                <button class="btn-small btn-info" onclick="viewDetails(3)">Ver</button>
+                                <button class="btn-small btn-danger">Cancelar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal de Detalles -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Detalles de Reserva</h2>
+            <div class="booking-details">
+                <div class="detail-row">
+                    <strong>Nombre:</strong>
+                    <span id="detailName"></span>
+                </div>
+                <div class="detail-row">
+                    <strong>Email:</strong>
+                    <span id="detailEmail"></span>
+                </div>
+                <div class="detail-row">
+                    <strong>Teléfono:</strong>
+                    <span id="detailPhone"></span>
+                </div>
+                <div class="detail-row">
+                    <strong>Cabaña:</strong>
+                    <span id="detailCabin"></span>
+                </div>
+                <div class="detail-row">
+                    <strong>Fechas:</strong>
+                    <span id="detailDates"></span>
+                </div>
+                <div class="detail-row">
+                    <strong>Huéspedes:</strong>
+                    <span id="detailGuests"></span>
+                </div>
+                <div class="detail-row">
+                    <strong>Total:</strong>
+                    <span id="detailTotal"></span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-success" onclick="approveBooking()">Confirmar</button>
+                <button class="btn btn-danger" onclick="rejectBooking()">Rechazar</button>
+                <button class="btn btn-secondary" onclick="closeModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+ 
+    <script src="{{ url_for('static', filename='js/reservas.js') }}"></script>
+</body>
+</html>

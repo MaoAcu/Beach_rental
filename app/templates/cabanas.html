@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabañas - Admin</title>
+   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cabanas.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏕️ Admin</h2>
+                <button class="toggle-sidebar">≡</button>
+            </div>
+             <nav class="sidebar-nav">
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item ">📊 Dashboard</a>
+                <a href="{{ url_for('routes.reserve') }}" class="nav-item">📅 Reservas</a>
+                <a href="{{ url_for('routes.cabanas') }}" class="nav-item active">🏠 Cabañas</a>
+                <a href="{{ url_for('routes.disponibilidad') }}" class="nav-item">📆 Disponibilidad</a>
+                <a href="{{ url_for('routes.price') }}" class="nav-item">💰 Precios</a>
+                <a href="{{ url_for('routes.image') }}" class="nav-item">🖼️ Imágenes</a>
+                <a href="{{ url_for('routes.message') }}" class="nav-item">💬 Mensajes</a>
+                <a href="{{ url_for('routes.ver_estadisticas') }}" class="nav-item">📈 Estadísticas</a>
+                <a href="{{ url_for('routes.config') }}" class="nav-item">⚙️ Configuración</a>
+                <a href="{{ url_for('routes.profile') }}" class="nav-item">👤 Perfil</a>
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item logout">🚪 Salir</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar cabaña...">
+                </div>
+                <div class="top-bar-right">
+                    <button class="btn btn-primary" onclick="openCabinModal()">+ Nueva Cabaña</button>
+                    <span class="user-name">Admin</span>
+                    <img src="/placeholder-user.jpg" alt="Usuario" class="avatar">
+                </div>
+            </header>
+
+            <section class="cabanas-content">
+                <h1>Gestión de Cabañas</h1>
+                
+                <div class="cabins-grid">
+                    <div class="cabin-card">
+                        <img src="/placeholder.jpg" alt="Cabaña Pino" class="cabin-image">
+                        <div class="cabin-info">
+                            <h3>Cabaña Pino</h3>
+                            <p class="cabin-capacity">👥 4 huéspedes</p>
+                            <p class="cabin-price">💰 $225/noche</p>
+                            <div class="amenities">
+                                <span class="amenity">🛏️</span>
+                                <span class="amenity">🚿</span>
+                                <span class="amenity">📺</span>
+                                <span class="amenity">🔥</span>
+                            </div>
+                            <div class="cabin-actions">
+                                <button class="btn-small btn-info" onclick="editCabin(1)">Editar</button>
+                                <button class="btn-small btn-danger" onclick="deleteCabin(1)">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cabin-card">
+                        <img src="/placeholder.jpg" alt="Cabaña Roble" class="cabin-image">
+                        <div class="cabin-info">
+                            <h3>Cabaña Roble</h3>
+                            <p class="cabin-capacity">👥 6 huéspedes</p>
+                            <p class="cabin-price">💰 $275/noche</p>
+                            <div class="amenities">
+                                <span class="amenity">🛏️</span>
+                                <span class="amenity">🚿</span>
+                                <span class="amenity">📺</span>
+                                <span class="amenity">🔥</span>
+                            </div>
+                            <div class="cabin-actions">
+                                <button class="btn-small btn-info" onclick="editCabin(2)">Editar</button>
+                                <button class="btn-small btn-danger" onclick="deleteCabin(2)">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cabin-card">
+                        <img src="/placeholder.jpg" alt="Cabaña Cedro" class="cabin-image">
+                        <div class="cabin-info">
+                            <h3>Cabaña Cedro</h3>
+                            <p class="cabin-capacity">👥 8 huéspedes</p>
+                            <p class="cabin-price">💰 $350/noche</p>
+                            <div class="amenities">
+                                <span class="amenity">🛏️</span>
+                                <span class="amenity">🚿</span>
+                                <span class="amenity">📺</span>
+                                <span class="amenity">🔥</span>
+                            </div>
+                            <div class="cabin-actions">
+                                <button class="btn-small btn-info" onclick="editCabin(3)">Editar</button>
+                                <button class="btn-small btn-danger" onclick="deleteCabin(3)">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal de Cabaña -->
+    <div id="cabinModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCabinModal()">&times;</span>
+            <h2 id="cabinModalTitle">Nueva Cabaña</h2>
+            <form id="cabinForm">
+                <div class="form-group">
+                    <label for="cabinName">Nombre</label>
+                    <input type="text" id="cabinName" required>
+                </div>
+                <div class="form-group">
+                    <label for="cabinCapacity">Capacidad (huéspedes)</label>
+                    <input type="number" id="cabinCapacity" required>
+                </div>
+                <div class="form-group">
+                    <label for="cabinPrice">Precio por noche</label>
+                    <input type="number" id="cabinPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="cabinDescription">Descripción</label>
+                    <textarea id="cabinDescription" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+<script src="{{ url_for('static', filename='js/cabanas.js') }}"></script>
+    
+</body>
+</html>

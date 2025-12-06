@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disponibilidad - Admin</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/disponibilidad.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏕️ Admin</h2>
+                <button class="toggle-sidebar">≡</button>
+            </div>
+              <nav class="sidebar-nav">
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item ">📊 Dashboard</a>
+                <a href="{{ url_for('routes.reserve') }}" class="nav-item">📅 Reservas</a>
+                <a href="{{ url_for('routes.cabanas') }}" class="nav-item ">🏠 Cabañas</a>
+                <a href="{{ url_for('routes.disponibilidad') }}" class="nav-item active">📆 Disponibilidad</a>
+                <a href="{{ url_for('routes.price') }}" class="nav-item">💰 Precios</a>
+                <a href="{{ url_for('routes.image') }}" class="nav-item">🖼️ Imágenes</a>
+                <a href="{{ url_for('routes.message') }}" class="nav-item">💬 Mensajes</a>
+                <a href="{{ url_for('routes.ver_estadisticas') }}" class="nav-item">📈 Estadísticas</a>
+                <a href="{{ url_for('routes.config') }}" class="nav-item ">⚙️ Configuración</a>
+                <a href="{{ url_for('routes.profile') }}" class="nav-item">👤 Perfil</a>
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item logout">🚪 Salir</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar...">
+                </div>
+                <div class="top-bar-right">
+                    <span class="user-name">Admin</span>
+                    <img src="/placeholder-user.jpg" alt="Usuario" class="avatar">
+                </div>
+            </header>
+
+            <section class="availability-content">
+                <h1>Disponibilidad de Cabañas</h1>
+                
+                <div class="calendar-controls">
+                    <select id="cabinSelect" onchange="changeCalendarCabin()">
+                        <option value="1">Cabaña Pino</option>
+                        <option value="2">Cabaña Roble</option>
+                        <option value="3">Cabaña Cedro</option>
+                    </select>
+                    <div class="month-controls">
+                        <button onclick="previousMonth()">&lt;</button>
+                        <span id="currentMonth">Diciembre 2024</span>
+                        <button onclick="nextMonth()">&gt;</button>
+                    </div>
+                </div>
+
+                <div class="calendar-wrapper">
+                    <div id="calendar" class="calendar"></div>
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #4CAF50;"></div>
+                        <span>Disponible</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #FFC107;"></div>
+                        <span>Última Noche</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #F44336;"></div>
+                        <span>Ocupado</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #9E9E9E;"></div>
+                        <span>Mantenimiento</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+ 
+    <script src="{{ url_for('static', filename='js/disponibilidad.js') }}"></script>
+</body>
+</html>

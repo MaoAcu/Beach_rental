@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - Dashboard</title> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏕️ Admin</h2>
+                <button class="toggle-sidebar">≡</button>
+            </div>
+             <nav class="sidebar-nav">
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item ">📊 Dashboard</a>
+                <a href="{{ url_for('routes.reserve') }}" class="nav-item">📅 Reservas</a>
+                <a href="{{ url_for('routes.cabanas') }}" class="nav-item ">🏠 Cabañas</a>
+                <a href="{{ url_for('routes.disponibilidad') }}" class="nav-item ">📆 Disponibilidad</a>
+                <a href="{{ url_for('routes.price') }}" class="nav-item">💰 Precios</a>
+                <a href="{{ url_for('routes.image') }}" class="nav-item ">🖼️ Imágenes</a>
+                <a href="{{ url_for('routes.message') }}" class="nav-item">💬 Mensajes</a>
+                <a href="{{ url_for('routes.ver_estadisticas') }}" class="nav-item ">📈 Estadísticas</a>
+                <a href="{{ url_for('routes.config') }}" class="nav-item ">⚙️ Configuración</a>
+                <a href="{{ url_for('routes.profile') }}" class="nav-item active">👤 Perfil</a>
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item logout">🚪 Salir</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar...">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="top-bar-right">
+                    <button class="notification-btn">🔔<span class="notification-badge">3</span></button>
+                    <div class="user-profile">
+                        <img src="https://via.placeholder.com/40/2d5f3f/ffffff?text=JD" alt="Admin" class="avatar">
+                        <div class="user-info">
+                            <p class="user-name">Juan Domínguez</p>
+                            <p class="user-role">Administrador</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <div class="page-header">
+                    <h1>Mi Perfil</h1>
+                    <p class="subtitle">Administra tu información personal</p>
+                </div>
+
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-avatar-section">
+                            <img src="https://via.placeholder.com/120/2d5f3f/ffffff?text=JD" alt="Avatar" class="profile-avatar">
+                            <button class="btn-small" id="changeAvatarBtn">Cambiar Foto</button>
+                            <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="profile-info">
+                            <h2>Juan Domínguez</h2>
+                            <p class="role">Administrador del Sistema</p>
+                            <p class="email">juan.dominguez@cabanasdelb osque.com</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h3>Información Personal</h3>
+                        <form class="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" value="Juan">
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido</label>
+                                    <input type="text" value="Domínguez">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" value="juan.dominguez@cabanasdelb osque.com">
+                                </div>
+                                <div class="form-group">
+                                    <label>Teléfono</label>
+                                    <input type="tel" value="+506 8765-4321">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Cédula</label>
+                                <input type="text" value="1-1234-5678">
+                            </div>
+                            <button type="button" class="btn-primary">Guardar Cambios</button>
+                        </form>
+                    </div>
+
+                    <div class="profile-section">
+                        <h3>Cambiar Contraseña</h3>
+                        <form class="profile-form password-form">
+                            <div class="form-group">
+                                <label>Contraseña Actual</label>
+                                <input type="password" placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label>Nueva Contraseña</label>
+                                <input type="password" placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirmar Contraseña</label>
+                                <input type="password" placeholder="••••••••">
+                            </div>
+                            <button type="button" class="btn-primary">Actualizar Contraseña</button>
+                        </form>
+                    </div>
+
+                    <div class="profile-section">
+                        <h3>Actividad Reciente</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <span class="activity-icon">✏️</span>
+                                <div class="activity-details">
+                                    <p>Editaste los precios de la Cabaña Deluxe</p>
+                                    <small>Hace 2 horas</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-icon">✅</span>
+                                <div class="activity-details">
+                                    <p>Aprobaste la reserva #RES001</p>
+                                    <small>Hace 4 horas</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-icon">📸</span>
+                                <div class="activity-details">
+                                    <p>Agregaste 3 imágenes a la Cabaña Estándar</p>
+                                    <small>Ayer</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-icon">🔧</span>
+                                <div class="activity-details">
+                                    <p>Actualizaste la configuración del sistema</p>
+                                    <small>Hace 3 días</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-section danger-section">
+                        <h3>Zona de Peligro</h3>
+                        <p>Estas acciones son irreversibles. Por favor, procede con cuidado.</p>
+                        <button class="btn-danger" id="deleteAccountBtn">Eliminar Mi Cuenta</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+     
+
+       <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+       <script src="{{ url_for('static', filename='js/perfil.js') }}"></script>
+</body>
+</html>

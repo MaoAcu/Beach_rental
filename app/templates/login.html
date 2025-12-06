@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Admin Dashboard</title>
+   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h1>🏕️ Admin Cabañas</h1>
+                <p>Sistema de Gestión de Reservas</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="admin@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required placeholder="••••••••">
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Recuérdame</label>
+                </div>
+                <button type="submit" class="btn-login">Ingresar</button>
+            </form>
+            <div class="login-footer">
+                <a href="#forgot">¿Olvidaste tu contraseña?</a>
+                <p>Cuenta de prueba: admin@test.com | Contraseña: 123456</p>
+            </div>
+        </div>
+    </div>
+ <script>
+    const DASHBOARD_UR = "{{ url_for('routes.dashB') }}";
+   </script>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas - Admin</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estadisticas.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏕️ Admin</h2>
+                <button class="toggle-sidebar">≡</button>
+            </div>
+              <nav class="sidebar-nav">
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item ">📊 Dashboard</a>
+                <a href="{{ url_for('routes.reserve') }}" class="nav-item">📅 Reservas</a>
+                <a href="{{ url_for('routes.cabanas') }}" class="nav-item ">🏠 Cabañas</a>
+                <a href="{{ url_for('routes.disponibilidad') }}" class="nav-item ">📆 Disponibilidad</a>
+                <a href="{{ url_for('routes.price') }}" class="nav-item">💰 Precios</a>
+                <a href="{{ url_for('routes.image') }}" class="nav-item">🖼️ Imágenes</a>
+                <a href="{{ url_for('routes.message') }}" class="nav-item">💬 Mensajes</a>
+                <a href="{{ url_for('routes.ver_estadisticas') }}" class="nav-item active">📈 Estadísticas</a>
+                <a href="{{ url_for('routes.config') }}" class="nav-item ">⚙️ Configuración</a>
+                <a href="{{ url_for('routes.profile') }}" class="nav-item">👤 Perfil</a>
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item logout">🚪 Salir</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar...">
+                </div>
+                <div class="top-bar-right">
+                    <select id="periodSelect" onchange="changePeriod()">
+                        <option value="month">Este Mes</option>
+                        <option value="quarter">Este Trimestre</option>
+                        <option value="year">Este Año</option>
+                    </select>
+                    <span class="user-name">Admin</span>
+                    <img src="/placeholder-user.jpg" alt="Usuario" class="avatar">
+                </div>
+            </header>
+
+            <section class="estadisticas-content">
+                <h1>Estadísticas y Reportes</h1>
+
+                <div class="kpi-cards">
+                    <div class="kpi-card">
+                        <h3>Ingresos Totales</h3>
+                        <p class="kpi-value">$12,450</p>
+                        <p class="kpi-change positive">↑ 15% desde el mes anterior</p>
+                    </div>
+                    <div class="kpi-card">
+                        <h3>Total Reservas</h3>
+                        <p class="kpi-value">42</p>
+                        <p class="kpi-change positive">↑ 8 más que el mes anterior</p>
+                    </div>
+                    <div class="kpi-card">
+                        <h3>Ocupación Promedio</h3>
+                        <p class="kpi-value">82%</p>
+                        <p class="kpi-change positive">↑ 5% desde el mes anterior</p>
+                    </div>
+                    <div class="kpi-card">
+                        <h3>Ticket Promedio</h3>
+                        <p class="kpi-value">$296</p>
+                        <p class="kpi-change positive">↑ 3% desde el mes anterior</p>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-section">
+                        <h3>Ingresos por Mes</h3>
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                    <div class="chart-section">
+                        <h3>Ocupación por Cabaña</h3>
+                        <canvas id="occupancyChart"></canvas>
+                    </div>
+                    <div class="chart-section">
+                        <h3>Reservas por Estado</h3>
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                    <div class="chart-section">
+                        <h3>Ingresos por Cabaña</h3>
+                        <canvas id="cabinRevenueChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="export-section">
+                    <h3>Exportar Reportes</h3>
+                    <div class="export-buttons">
+                        <button class="btn btn-primary" onclick="exportPDF()">📄 Descargar PDF</button>
+                        <button class="btn btn-primary" onclick="exportExcel()">📊 Descargar Excel</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+ 
+        <script src="{{ url_for('static', filename='js/estadisticas.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+.precios-content {
+  padding: 30px;
+}
+
+.precios-content h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.pricing-section {
+  background: white;
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+}
+
+.pricing-section h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 10px;
+}
+
+.season-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.season-card {
+  background: var(--bg-light);
+  padding: 15px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+}
+
+.season-card h4 {
+  margin-bottom: 8px;
+  color: var(--primary-color);
+}
+
+.season-card p {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.season-card input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .precios-content {
+    padding: 15px;
+  }
+
+  .season-grid {
+    grid-template-columns: 1fr;
+  }
+}

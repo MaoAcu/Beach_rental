@@ -1,0 +1,99 @@
+.imagenes-content {
+  padding: 30px;
+}
+
+.imagenes-content h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.images-controls {
+  margin-bottom: 30px;
+}
+
+.images-controls select {
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+
+.upload-area {
+  background: white;
+  border: 2px dashed var(--primary-color);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.upload-area:hover {
+  background-color: rgba(45, 95, 63, 0.05);
+}
+
+.upload-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.upload-area h3 {
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.upload-area p {
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.image-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.image-preview {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.image-info {
+  padding: 15px;
+}
+
+.image-info p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
+.image-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.image-actions button {
+  flex: 1;
+  padding: 6px;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .imagenes-content {
+    padding: 15px;
+  }
+
+  .images-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

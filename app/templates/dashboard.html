@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Admin Cabañas</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏕️ Admin</h2>
+                <button class="toggle-sidebar">≡</button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item active">📊 Dashboard</a>
+                <a href="{{ url_for('routes.reserve') }}" class="nav-item">📅 Reservas</a>
+                <a href="{{ url_for('routes.cabanas') }}" class="nav-item">🏠 Cabañas</a>
+                <a href="{{ url_for('routes.disponibilidad') }}" class="nav-item">📆 Disponibilidad</a>
+                <a href="{{ url_for('routes.price') }}" class="nav-item">💰 Precios</a>
+                <a href="{{ url_for('routes.image') }}" class="nav-item">🖼️ Imágenes</a>
+                <a href="{{ url_for('routes.message') }}" class="nav-item">💬 Mensajes</a>
+                <a href="{{ url_for('routes.ver_estadisticas') }}" class="nav-item">📈 Estadísticas</a>
+                <a href="{{ url_for('routes.config') }}" class="nav-item">⚙️ Configuración</a>
+                <a href="{{ url_for('routes.profile') }}" class="nav-item">👤 Perfil</a>
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item logout">🚪 Salir</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar...">
+                </div>
+                <div class="top-bar-right">
+                    <span class="user-name">Admin</span>
+                    <img src="/placeholder-user.jpg" alt="Usuario" class="avatar">
+                </div>
+            </header>
+
+            <section class="dashboard-content">
+                <h1>Bienvenido al Dashboard</h1>
+                
+                <!-- Estadísticas -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <h3>Reservas Este Mes</h3>
+                            <p class="stat-number">24</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <h3>Ocupación Promedio</h3>
+                            <p class="stat-number">78%</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💵</div>
+                        <div class="stat-info">
+                            <h3>Ingresos Este Mes</h3>
+                            <p class="stat-number">$4,250</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏠</div>
+                        <div class="stat-info">
+                            <h3>Cabañas Activas</h3>
+                            <p class="stat-number">5</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráficas -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Ingresos Últimos 6 Meses</h3>
+                        <div class="chart-placeholder">
+                            <canvas id="incomesChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Ocupación por Cabaña</h3>
+                        <div class="chart-placeholder">
+                            <canvas id="occupancyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Últimas Reservas -->
+                <div class="recent-bookings">
+                    <h3>Últimas Reservas</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Huésped</th>
+                                <th>Cabaña</th>
+                                <th>Check-in</th>
+                                <th>Check-out</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#001</td>
+                                <td>Juan García</td>
+                                <td>Cabaña Pino</td>
+                                <td>15/12/2024</td>
+                                <td>17/12/2024</td>
+                                <td><span class="badge badge-success">Confirmada</span></td>
+                            </tr>
+                            <tr>
+                                <td>#002</td>
+                                <td>María López</td>
+                                <td>Cabaña Roble</td>
+                                <td>18/12/2024</td>
+                                <td>20/12/2024</td>
+                                <td><span class="badge badge-success">Confirmada</span></td>
+                            </tr>
+                            <tr>
+                                <td>#003</td>
+                                <td>Carlos Martín</td>
+                                <td>Cabaña Cedro</td>
+                                <td>21/12/2024</td>
+                                <td>23/12/2024</td>
+                                <td><span class="badge badge-warning">Pendiente</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+   
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

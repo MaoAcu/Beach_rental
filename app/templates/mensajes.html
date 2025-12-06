@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes - Admin</title> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mensajes.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏕️ Admin</h2>
+                <button class="toggle-sidebar">≡</button>
+            </div>
+             <nav class="sidebar-nav">
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item ">📊 Dashboard</a>
+                <a href="{{ url_for('routes.reserve') }}" class="nav-item">📅 Reservas</a>
+                <a href="{{ url_for('routes.cabanas') }}" class="nav-item ">🏠 Cabañas</a>
+                <a href="{{ url_for('routes.disponibilidad') }}" class="nav-item ">📆 Disponibilidad</a>
+                <a href="{{ url_for('routes.price') }}" class="nav-item">💰 Precios</a>
+                <a href="{{ url_for('routes.image') }}" class="nav-item ">🖼️ Imágenes</a>
+                <a href="{{ url_for('routes.message') }}" class="nav-item active">💬 Mensajes</a>
+                <a href="{{ url_for('routes.ver_estadisticas') }}" class="nav-item ">📈 Estadísticas</a>
+                <a href="{{ url_for('routes.config') }}" class="nav-item ">⚙️ Configuración</a>
+                <a href="{{ url_for('routes.profile') }}" class="nav-item">👤 Perfil</a>
+                <a href="{{ url_for('routes.dashB') }}" class="nav-item logout">🚪 Salir</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar mensajes...">
+                </div>
+                <div class="top-bar-right">
+                    <span class="user-name">Admin</span>
+                    <img src="/placeholder-user.jpg" alt="Usuario" class="avatar">
+                </div>
+            </header>
+
+            <section class="mensajes-content">
+                <h1>Mensajes</h1>
+                
+                <div class="mensajes-layout">
+                    <!-- Lista de Conversaciones -->
+                    <div class="conversations-list">
+                        <div class="conversation-item active" onclick="selectConversation(this, 1)">
+                            <div class="conversation-avatar">JG</div>
+                            <div class="conversation-info">
+                                <h4>Juan García</h4>
+                                <p>¿Cuál es la política de cancelación?</p>
+                                <span class="time">10:30 AM</span>
+                            </div>
+                            <span class="badge">1</span>
+                        </div>
+                        <div class="conversation-item" onclick="selectConversation(this, 2)">
+                            <div class="conversation-avatar">ML</div>
+                            <div class="conversation-info">
+                                <h4>María López</h4>
+                                <p>¿Hay WiFi en la cabaña?</p>
+                                <span class="time">09:15 AM</span>
+                            </div>
+                        </div>
+                        <div class="conversation-item" onclick="selectConversation(this, 3)">
+                            <div class="conversation-avatar">CM</div>
+                            <div class="conversation-info">
+                                <h4>Carlos Martín</h4>
+                                <p>Necesito más información sobre...</p>
+                                <span class="time">08:45 AM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Area -->
+                    <div class="chat-area">
+                        <div class="chat-header">
+                            <h3 id="chatTitle">Juan García</h3>
+                            <p id="chatEmail">juan@email.com</p>
+                        </div>
+
+                        <div class="messages-container" id="messagesContainer">
+                            <div class="message-group">
+                                <div class="message client">
+                                    <p>Hola, tengo una consulta sobre la cabaña</p>
+                                    <span class="time">10:25 AM</span>
+                                </div>
+                                <div class="message client">
+                                    <p>¿Cuál es la política de cancelación?</p>
+                                    <span class="time">10:30 AM</span>
+                                </div>
+                                <div class="message admin">
+                                    <p>Hola Juan, gracias por escribir. Las cancelaciones dentro de 7 días antes de la fecha de check-in se cobran con penalidad del 50%.</p>
+                                    <span class="time">10:35 AM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="message-input">
+                            <textarea id="messageInput" placeholder="Escribe tu respuesta..."></textarea>
+                            <button class="btn btn-primary" onclick="sendMessage()">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+ 
+    <script src="{{ url_for('static', filename='js/mensajes.js') }}"></script>
+</body>
+</html>
