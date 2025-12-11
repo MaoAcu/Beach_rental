@@ -18,5 +18,7 @@ def create_app():
     app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
     app.config["SESSION_COOKIE_HTTPONLY"] = True
     from .controllers.routes import routes_bp
+    from .controllers.climaController import clima_bp
+    app.register_blueprint(clima_bp)
     app.register_blueprint(routes_bp)
     return app
