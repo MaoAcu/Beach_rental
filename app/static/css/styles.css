@@ -39,8 +39,8 @@ body {
 
 /*Logo*/
 .location-avatar {
-    width: 80px;  
-    height: 80px;
+    width: 66px;  
+    height: 66px;
     border-radius: 50%; /* Hace la imagen circular */
     object-fit: cover; /* Asegura que la imagen se ajuste bien */
     border: 2px solid #fff; /* Opcional: borde blanco */
