@@ -2,12 +2,12 @@ from flask import Blueprint, jsonify
 import requests
 from datetime import datetime
 import os
-
+#from dotenv import load_dotenv
 clima_bp = Blueprint("clima", __name__, url_prefix='/clima')
 
-from dotenv import load_dotenv
 
-load_dotenv()
+
+#oad_dotenv()
 
 
 LAT=os.getenv('LAT')
